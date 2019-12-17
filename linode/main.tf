@@ -35,6 +35,10 @@ variable "image" {
   default = "linode/ubuntu18.04"
 }
 
+variable "stackscript_images" {
+  default = ["linode/ubuntu18.04", "linode/ubuntu19.04"]
+}
+
 variable "group" {
   default = "rancher"
 }
@@ -47,7 +51,7 @@ variable "docker_version_server" {
   default = "19.03"
 }
 
-variable "ssh_keys" {
+variable "authorized_keys" {
   default = []
 }
 
@@ -55,28 +59,28 @@ resource "linode_stackscript" "rancher_server_userdata" {
   label = "rancher_server_userdata"
   description = "Installs Rancher Server"
   script = file("files/userdata_server")
-  image = var.image
+  images = var.stackscript_images
   rev_note = "ALPHA - NO PROD"
 }
 
 resource "linode_instance" "rancherserver" {
-  image          = var.image
-  label          = "${var.prefix}-rancherserver"
-  region         = var.region
-  type           = var.type
-  stackscript_id = "${linode_stackscript.rancher_server_userdata.id}"
+  image            = var.image
+  label            = "${var.prefix}-rancherserver"
+  region           = var.region
+  type             = var.type
+  stackscript_id   = linode_stackscript.rancher_server_userdata.id
   stackscript_data = {
     admin_password        = var.admin_password
     cluster_name          = var.cluster_name
     docker_version_server = var.docker_version_server
     rancher_version       = var.rancher_version
   }
-  ssh_keys       = var.ssh_keys
-  group          = var.group
-  tags           = var.tags
+  authorized_keys = var.authorized_keys
+  group           = var.group
+  tags            = var.tags
 }
 
 output "rancher-url" {
-  value = ["https://${linode_instance.rancherserver[0].ipv4_address}"]
+  value = ["https://${linode_instance.rancherserver.ipv4}"]
 }
 
