@@ -48,6 +48,10 @@ variable "size" {
   default = "g6-standard-1"
 }
 
+variable "image" {
+  default = "linode/ubuntu18.04"
+}
+
 variable "docker_version_server" {
   default = "19.03"
 }
@@ -62,8 +66,8 @@ variable "ssh_keys" {
 
 resource "linode_instance" "rancherserver" {
   count     = "1"
-  image     = "linode/ubuntu18.04"
-  label     = "${var.prefix}-rancherserver"c
+  image     = var.image
+  label     = "${var.prefix}-rancherserver"
   region    = var.region
   size      = var.size
   user_data = data.template_file.userdata_server.rendered
@@ -72,7 +76,7 @@ resource "linode_instance" "rancherserver" {
 
 resource "linode_instance" "rancheragent-all" {
   count     = var.count_agent_all_nodes
-  image     = "ubuntu-18-04-x64"
+  image     = var.image
   label     = "${var.prefix}-rancheragent-${count.index}-all"
   region    = var.region
   size      = var.size
@@ -82,7 +86,7 @@ resource "linode_instance" "rancheragent-all" {
 
 resource "linode_instance" "rancheragent-etcd" {
   count     = var.count_agent_etcd_nodes
-  image     = "ubuntu-18-04-x64"
+  image     = var.image
   name      = "${var.prefix}-rancheragent-${count.index}-etcd"
   region    = var.region
   size      = var.size
@@ -92,7 +96,7 @@ resource "linode_instance" "rancheragent-etcd" {
 
 resource "linode_instance" "rancheragent-controlplane" {
   count     = var.count_agent_controlplane_nodes
-  image     = "ubuntu-18-04-x64"
+  image     = var.image
   name      = "${var.prefix}-rancheragent-${count.index}-controlplane"
   region    = var.region
   size      = var.size
@@ -102,7 +106,7 @@ resource "linode_instance" "rancheragent-controlplane" {
 
 resource "linode_instance" "rancheragent-worker" {
   count     = var.count_agent_worker_nodes
-  image     = "ubuntu-18-04-x64"
+  image     = var.image
   name      = "${var.prefix}-rancheragent-${count.index}-worker"
   region    = var.region
   size      = var.size
