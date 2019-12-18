@@ -1,0 +1,8 @@
+stages:
+- name: Check for a file
+  steps:
+  - runScriptConfig:
+      image: alpine:latest
+      shellScript: cat linode/main.tf
+timeout: 1
+notification: {}
