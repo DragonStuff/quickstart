@@ -1,4 +1,4 @@
-# Quickstart examples for Rancher
+# Rancher and LKS (Terraform)
 
 ## Summary
 
