@@ -2,7 +2,7 @@
 
 ## Summary
 
-**NOTE:** Terraform 0.12.0 or higher is required for cloud based environments. (Linode, AWS and DigitalOcean)
+**NOTE:** Terraform 0.12.0 or higher is required.
 
 This repo contains scripts that will allow you to quickly deploy and test Rancher for POC.
 The contents aren't intended for production but are here to get you up and going with running Rancher Server for a POC and to help show the functionality.
