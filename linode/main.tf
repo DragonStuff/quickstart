@@ -32,11 +32,11 @@ variable "type" {
 }
 
 variable "image" {
-  default = "linode/ubuntu18.04"
+  default = "linode/debian10"
 }
 
 variable "stackscript_images" {
-  default = ["linode/ubuntu18.04", "linode/ubuntu19.04"]
+  default = ["linode/debian10", "linode/debian9"]
 }
 
 variable "group" {
@@ -48,7 +48,7 @@ variable "tags" {
 }
 
 variable "docker_version_server" {
-  default = "19.03"
+  default = "19.03.5"
 }
 
 variable "authorized_keys" {
