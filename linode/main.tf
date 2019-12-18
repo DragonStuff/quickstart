@@ -68,6 +68,7 @@ resource "linode_instance" "rancherserver" {
   label            = "${var.prefix}-rancherserver"
   region           = var.region
   type             = var.type
+  root_pass        = "ny289t2t3923g9n8239naAIWDJOU"
   stackscript_id   = linode_stackscript.rancher_server_userdata.id
   stackscript_data = {
     admin_password        = var.admin_password
@@ -81,6 +82,6 @@ resource "linode_instance" "rancherserver" {
 }
 
 output "rancher-url" {
-  value = ["https://${linode_instance.rancherserver.ipv4}"]
+  value = linode_instance.rancherserver.ipv4
 }
 

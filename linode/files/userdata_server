@@ -1,4 +1,10 @@
 #!/bin/bash -x
+
+# <UDF name="admin_password" Label="Admin password for Rancher." default="wjdoauh9w8yd79ayw7dya7dhqiwhdaiwuhduwd" />
+# <UDF name="cluster_name" Label="Cluster name for Rancher." default="rancher-linode-foo" />
+# <UDF name="docker_version_server" Label="Rancher server Docker version." default="19.03" />
+# <UDF name="rancher_version" Label="Rancher server version." default="latest" example="latest" />
+
 export curlimage=appropriate/curl
 export jqimage=stedolan/jq
 
