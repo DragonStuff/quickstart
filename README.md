@@ -22,7 +22,7 @@ This terraform setup will:
 
 ### How to use
 
-- Clone this repository and go into the DO subfolder
+- Clone this repository and go into the **Linode** subfolder
 - Move the file `terraform.tfvars.example` to `terraform.tfvars` and edit (see inline explanation)
 - Run `terraform init`
 - Run `terraform apply`
